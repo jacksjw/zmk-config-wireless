@@ -30,10 +30,10 @@
 #define U_WH_L &msc SCRL_LEFT
 #define U_WH_R &msc SCRL_RIGHT
 
-&mt {
+//&mt {
     // flavor = "tap-preferred";
     // tapping_term_ms = <200>;
-};
+//};
 
  /{ 
     behaviors {
