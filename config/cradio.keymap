@@ -36,44 +36,38 @@
 //};
 
  /{ 
+chosen {
+        zmk,charmap = &charmap_us;
+    };
     behaviors {
-        //mod kp when u hold, and to layer when you tap
-        mtt:mod_tap_to {
+        ht: hold_tap {
+            label = "hold_tap";
             compatible = "zmk,behavior-hold-tap";
-            label = "MOD_TAP_TO";
             #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <0>;
-            bindings = <&kp>, <&to>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            global-quick-tap;
+            bindings = <&kp>, <&kp>;
         };
-        //momentary layer on hold, and to layer on tap
-        mlt:momentary_layer_tap_to {
-            compatible = "zmk,behavior-hold-tap";
-            label="MOMENTARY_LAYER_TAP_TO";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <0>;
-            bindings = <&mo>, <&to>;
+        mmv {
+            acceleration-exponent = <1>;      // 1
+            time-to-max-speed-ms = <300>;    // 40
+            delay-ms = <0>;                   // 0
+        };
+        msc {
+            acceleration-exponent = <0>;      // 0
+            time-to-max-speed-ms = <40>;      // 500
+            delay-ms = <0>;                   // 10
         };
     };
 
-    combos {
-        compatible = "zmk,combos";
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
 
-        combo_unlock {
-            timeout-ms = <50>;
-            key-positions = <11 12 13 16 17 18>;
-            layers = <3>;
-            bindings = <&to 0>;
-        };
-
-        combo_lock {
-            timeout-ms = <50>;
-            key-positions = <2 10>;
-            layers = <2>;
-            bindings = <&to 3>;
+        tri_layer {
+            if-layers = <RIG LEF>;
+            then-layer = <TRI>;
         };
     };
 
