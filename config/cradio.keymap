@@ -14,7 +14,7 @@
     // tapping_term_ms = <200>;
 };
 
-/ { 
+ { 
     behaviors {
         //mod kp when u hold, and to layer when you tap
         mtt:mod_tap_to {
